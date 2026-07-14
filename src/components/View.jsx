@@ -1,76 +1,61 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const View = () => {
-    const [data, changeData] = useState([]);
+  const [data, changeData] = useState([]);
 
-    const fetchData = () => {
-        axios
-            .get("http://localhost:3000/view-entry")
-            .then((response) => {
-                changeData(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
+  const fetchData = () => {
+    axios
+      .get("http://localhost:3000/view-entry")
+      .then((response) => {
+        changeData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    return (
-        <div className="container mt-4">
-            <div className="row">
-                {data.map((value, index) => {
-                    return (
-                        <div
-                            className="col-12 col-md-6 col-lg-4 mb-4"
-                            key={index}
-                        >
-                            <div className="card shadow h-100">
-                                <div className="card-body">
+  return (
+    <div className="container mt-4">
+      <h3 className="text-center mb-4">Lab Log Entries</h3>
 
-                                    <h4 className="card-title text-center mb-3">
-                                        {value.name}
-                                    </h4>
+      <div className="table-responsive">
+        <table className="table table-bordered table-striped table-hover">
+          <thead className="table-dark">
+            <tr>
+              <th>Name</th>
+              <th>Department</th>
+              <th>Semester</th>
+              <th>Course</th>
+              <th>System No.</th>
+              <th>Login Time</th>
+              <th>Logout Time</th>
+              <th>Date</th>
+            </tr>
+          </thead>
 
-                                    <p className="card-text">
-                                        <strong>Department:</strong> {value.dept}
-                                    </p>
-
-                                    <p className="card-text">
-                                        <strong>Semester:</strong> {value.sem}
-                                    </p>
-
-                                    <p className="card-text">
-                                        <strong>Course:</strong> {value.course}
-                                    </p>
-
-                                    <p className="card-text">
-                                        <strong>System Number:</strong> {value.system_number}
-                                    </p>
-
-                                    <p className="card-text">
-                                        <strong>Login Time:</strong> {value.login_time}
-                                    </p>
-
-                                    <p className="card-text">
-                                        <strong>Logout Time:</strong> {value.logout_time}
-                                    </p>
-
-                                    <p className="card-text">
-                                        <strong>Date:</strong> {value.date}
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-        </div>
-    );
+          <tbody>
+            {data.map((entry) => (
+              <tr key={entry._id}>
+                <td>{entry.name}</td>
+                <td>{entry.dept}</td>
+                <td>{entry.sem}</td>
+                <td>{entry.course}</td>
+                <td>{entry.system_number}</td>
+                <td>{entry.login_time}</td>
+                <td>{entry.logout_time}</td>
+                <td>{entry.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 export default View;
