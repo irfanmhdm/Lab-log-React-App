@@ -48,7 +48,9 @@ const Add = () => {
     };
 
     return (
-        <div className="container border border-2 rounded shadow p-5 mt-5">
+        <div className="container border border-2 rounded shadow p-5 mt-5 bg-secondary">
+
+            <div className="form text-center p-5"><h1>REGISTRATION FORM </h1></div>
             <div className="row">
                 <div className="col-12">
                     <div className="row g-3">
@@ -66,13 +68,16 @@ const Add = () => {
 
                         <div className="col-md-6">
                             <label className="form-label">Department</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="dept"
+                            <select name="dept" id="" className="form-select"
                                 value={input.dept}
-                                onChange={inputHandler}
-                            />
+                                onChange={inputHandler}>
+                                <option value="">Select Department</option>
+                                <option value="MCA">MCA</option>
+                                <option value="MBA">MBA</option>
+                                <option value="CS">CS</option>
+                                <option value="EC">EC</option>
+                            </select>
+                            
                         </div>
 
                         <div className="col-md-6">
@@ -88,13 +93,16 @@ const Add = () => {
 
                         <div className="col-md-6">
                             <label className="form-label">Course</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="course"
+                            <select name="course" id="" className="form-select"
                                 value={input.course}
-                                onChange={inputHandler}
-                            />
+                                onChange={inputHandler}>
+                                <option value="">Select Course</option>
+                                <option value="Python">Python</option>
+                                <option value="Java">Java</option>
+                                <option value="Cloud">Cloud</option>
+                                <option value="React">React</option>
+                            </select>
+                            
                         </div>
 
                         <div className="col-md-6">
@@ -143,7 +151,7 @@ const Add = () => {
 
                         <div className="col-12 text-center mt-4">
                             <button
-                                className="btn btn-success px-5"
+                                className="btn btn-primary px-5"
                                 onClick={readValue}
                             >
                                 Add Entry
